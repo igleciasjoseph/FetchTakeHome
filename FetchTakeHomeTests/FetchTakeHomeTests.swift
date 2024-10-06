@@ -8,29 +8,64 @@
 import XCTest
 @testable import FetchTakeHome
 
-final class FetchTakeHomeTests: XCTestCase {
+final class RecipeServiceTests: XCTestCase {
+    
+    var apiService: APIService!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        apiService = APIService()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        apiService = nil
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    // Test case to ensure valid data is fetched and decoded successfully
+    func testFetchAllRecipesSuccess() async throws {
+        let validRecipesURL = "https://d3jbb8n5wk0qxi.cloudfront.net/recipes.json"
+        
+        do {
+            let recipes = try await apiService.fetchRecipes(from: validRecipesURL)
+            XCTAssertFalse(recipes.isEmpty, "Recipes should not be empty")
+            XCTAssertNotNil(recipes.first?.name, "First recipe should have a name")
+        } catch {
+            XCTFail("Fetching valid recipes failed with error: \(error.localizedDescription)")
+        }
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    // Test case to handle malformed data
+    func testFetchMalformedRecipes() async throws {
+        // Given: Malformed data URL
+        let malformedURL = "https://d3jbb8n5wk0qxi.cloudfront.net/recipes-malformed.json"
+        
+        do {
+            // When: Calling the API
+            _ = try await apiService.fetchRecipes(from: malformedURL)
+            XCTFail("Expected APIError.malformedRecipe but got no error")
+        } catch let error as APIServiceError {
+            // Then: Verify that the correct error is thrown
+            XCTAssertEqual(error, APIServiceError.malformedData, "Malformed data should throw APIError.malformedRecipe")
+        } catch {
+            XCTFail("Unexpected error: \(error)")
+        }
+    }
+
+
+    // Test case to handle empty data scenario
+    func testEmptyData() async throws {
+        // Given: Empty data URL
+        let emptyURL = "https://d3jbb8n5wk0qxi.cloudfront.net/recipes-empty.json"
+        
+        do {
+            // When: Calling the API
+            let recipes = try await apiService.fetchRecipes(from: emptyURL)
+            
+            // Then: Verify no error and that the recipe list is empty
+            XCTAssertTrue(recipes.isEmpty, "Expected no recipes, but got some recipes")
+        } catch {
+            XCTFail("Expected no error, but got \(error)")
         }
     }
 
 }
+

@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		65D780BE2CB1C35D0051AF51 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 65D780BD2CB1C35D0051AF51 /* README.md */; };
+		65DE36952CB249CA004D53CA /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 65DE36942CB249CA004D53CA /* CachedAsyncImage */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		65D780972CB1BF470051AF51 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,11 +32,25 @@
 		65D780862CB1BF450051AF51 /* FetchTakeHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FetchTakeHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D780962CB1BF470051AF51 /* FetchTakeHomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FetchTakeHomeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D780A02CB1BF470051AF51 /* FetchTakeHomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FetchTakeHomeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		65D780BD2CB1C35D0051AF51 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		65DE36972CB25CB6004D53CA /* Exceptions for "FetchTakeHome" folder in "FetchTakeHome" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 65D780852CB1BF450051AF51 /* FetchTakeHome */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		65D780882CB1BF450051AF51 /* FetchTakeHome */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				65DE36972CB25CB6004D53CA /* Exceptions for "FetchTakeHome" folder in "FetchTakeHome" target */,
+			);
 			path = FetchTakeHome;
 			sourceTree = "<group>";
 		};
@@ -40,9 +59,9 @@
 			path = FetchTakeHomeTests;
 			sourceTree = "<group>";
 		};
-		65D780A32CB1BF470051AF51 /* FetchTakeHomeUITests */ = {
+		65DE369B2CB31604004D53CA /* Images */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = FetchTakeHomeUITests;
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -52,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65DE36952CB249CA004D53CA /* CachedAsyncImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,9 +95,10 @@
 		65D7807D2CB1BF450051AF51 = {
 			isa = PBXGroup;
 			children = (
+				65DE369B2CB31604004D53CA /* Images */,
+				65D780BD2CB1C35D0051AF51 /* README.md */,
 				65D780882CB1BF450051AF51 /* FetchTakeHome */,
 				65D780992CB1BF470051AF51 /* FetchTakeHomeTests */,
-				65D780A32CB1BF470051AF51 /* FetchTakeHomeUITests */,
 				65D780872CB1BF450051AF51 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -109,9 +130,11 @@
 			);
 			fileSystemSynchronizedGroups = (
 				65D780882CB1BF450051AF51 /* FetchTakeHome */,
+				65DE369B2CB31604004D53CA /* Images */,
 			);
 			name = FetchTakeHome;
 			packageProductDependencies = (
+				65DE36942CB249CA004D53CA /* CachedAsyncImage */,
 			);
 			productName = FetchTakeHome;
 			productReference = 65D780862CB1BF450051AF51 /* FetchTakeHome.app */;
@@ -153,9 +176,6 @@
 			dependencies = (
 				65D780A22CB1BF470051AF51 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				65D780A32CB1BF470051AF51 /* FetchTakeHomeUITests */,
-			);
 			name = FetchTakeHomeUITests;
 			packageProductDependencies = (
 			);
@@ -195,6 +215,9 @@
 			);
 			mainGroup = 65D7807D2CB1BF450051AF51;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				65DE36932CB249CA004D53CA /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 65D780872CB1BF450051AF51 /* Products */;
 			projectDirPath = "";
@@ -212,6 +235,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65D780BE2CB1C35D0051AF51 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,11 +423,13 @@
 				DEVELOPMENT_TEAM = YP9A8HH9G6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FetchTakeHome/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -428,11 +454,13 @@
 				DEVELOPMENT_TEAM = YP9A8HH9G6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FetchTakeHome/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -558,6 +586,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		65DE36932CB249CA004D53CA /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-cached-async-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		65DE36942CB249CA004D53CA /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 65DE36932CB249CA004D53CA /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
+			productName = CachedAsyncImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 65D7807E2CB1BF450051AF51 /* Project object */;
 }

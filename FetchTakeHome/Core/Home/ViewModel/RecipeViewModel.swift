@@ -7,12 +7,24 @@
 
 import SwiftUI
 
-struct RecipeViewModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+@MainActor
+class RecipeViewModel: ObservableObject {
+    @Published var recipes: [Recipe] = []
+    @Published var isLoading = false
+    @Published var errorMessage: String?
+    private let recipeURLString = "https://d3jbb8n5wk0qxi.cloudfront.net/recipes.json"
 
-#Preview {
-    RecipeViewModel()
+    private let apiService = APIService()
+
+    // Function to load recipes using async/await
+    func loadRecipes() async {
+        isLoading = true
+        do {
+            let fetchedRecipes = try await apiService.fetchRecipes(from: recipeURLString)
+            recipes = fetchedRecipes
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+        isLoading = false
+    }
 }
