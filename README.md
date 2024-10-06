@@ -1,8 +1,11 @@
 ## Images
-
-![Home View](/Images/home.png "Home View.")
-![External Read More](/Images/externalLink.png "External Read More.")
-![Unit Tests](/Images/tests.png "Unit Tests.")
+<div align="center">
+	<img width = "33%" src="/Images/home.png">
+  <img width = "33%" src="/Images/externalLink.png">
+</div>
+<div align="center">
+  <img width = "75%" src="/Images/tests.png">
+</div>
 
 # Steps to Run the App
 
