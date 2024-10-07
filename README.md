@@ -17,7 +17,7 @@ Clone the project from the public repository.
 3. Open in Xcode: Open the FetchTakeHome.xcodeproj file in Xcode.
 Ensure your deployment target is set to at least iOS 16.
 
-4. Run the app:Build and run the app using the iOS simulator or a connected device.
+4. Build and run the app using the iOS simulator or a connected device.
 The app will automatically load the recipes from the API when launched and will provide options for refreshing the list.
 
 5. Testing: To run unit tests, press Cmd + U or select the Test action from Xcode's toolbar.
@@ -73,7 +73,7 @@ https://github.com/lorenzofiamingo/swiftui-cached-async-image/tree/main
 
 # Additional Information
 
-* Malformed Data Handling: I made sure to treat any recipe list as entirely invalid if even one malformed recipe is detected, as per the project requirements. This approach ensures data integrity when displaying recipe information.
+* Malformed Data Handling: I made sure to treat any recipe list as entirely invalid if even one malformed recipe is detected, as per the project requirements. This approach ensures data integrity when displaying recipe information. ***However,*** the "All Recipes" API which was in theory without errors, had some missing data. This caused some initial confusion due to the malformed data API but the only malformed data in the "All Recipes" api wasn't the required fields. So proper malformed data error handling still persisted
 
 * Concurrency: By leveraging Swift’s concurrency features, the app efficiently handles network requests, allowing for smooth UI transitions while loading data.
 
