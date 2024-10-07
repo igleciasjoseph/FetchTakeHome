@@ -2,6 +2,7 @@
 <div align="center">
 	<img width = "33%" src="/Images/home.png">
   <img width = "33%" src="/Images/externalLink.png">
+  <img width = "33%" src="/Images/malformedData.png">
 </div>
 <div align="center">
   <img width = "75%" src="/Images/tests.png">
