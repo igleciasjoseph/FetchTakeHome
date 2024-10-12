@@ -31,7 +31,7 @@ enum APIServiceError: Error, LocalizedError, Equatable {
     }
 }
 
-class APIService {
+class APIService: APIServiceProtocol {
     
     func fetchRecipes(from urlString: String) async throws -> [Recipe] {
         guard let url = URL(string: urlString) else {
@@ -48,6 +48,11 @@ class APIService {
         do {
             let recipeResponse = try JSONDecoder().decode(RecipeResponse.self, from: data)
             
+            // If no recipes found, throw an emptyData error
+            guard !recipeResponse.recipes.isEmpty else {
+                throw APIServiceError.emptyData
+            }
+            
             // Only required properties
             for recipe in recipeResponse.recipes {
                 if recipe.name == nil || recipe.cuisine == nil || recipe.photoUrlLarge == nil{
@@ -55,14 +60,10 @@ class APIService {
                 }
             }
             
-            // check if empty
-            if recipeResponse.recipes.isEmpty {
-                return []
-            }
-            
             return recipeResponse.recipes
         } catch {
-            throw APIServiceError.malformedData
+            print("Decoding error: \(error)")
+            throw APIServiceError.decodingFailed(error.localizedDescription)
         }
     }
 }

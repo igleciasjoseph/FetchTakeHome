@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+enum RecipeState {
+    case idle
+    case loading
+    case loaded([Recipe])
+    case error(String)
+}

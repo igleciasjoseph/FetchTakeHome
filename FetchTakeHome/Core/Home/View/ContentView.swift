@@ -8,40 +8,47 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var viewModel = RecipeViewModel()
+    @StateObject private var viewModel = RecipeViewModel(service: APIService())
     
     var body: some View {
         NavigationStack {
             VStack {
-                if viewModel.isLoading {
-                    ProgressView("Loading recipes...")
-                } else if let errorMessage = viewModel.errorMessage {
-                    Text("Error: \(errorMessage)")
-                        .foregroundColor(.red)
-                        .multilineTextAlignment(.center)
-                        .padding()
-                } else if viewModel.recipes.isEmpty {
-                    Text("No recipes available")
+                switch viewModel.state {
+                case .idle:
+                    Text("Welcome! Pull to refresh.")
                         .foregroundColor(.gray)
                         .multilineTextAlignment(.center)
                         .padding()
-                } else {
-                    
-                    List(viewModel.recipes, id: \.uuid) { recipe in
-                        RecipeDetailView(recipe: recipe, viewModel: viewModel)
+                
+                case .loading:
+                    ProgressView("Loading recipes...")
+                
+                case .loaded(let recipes):
+                    if recipes.isEmpty {
+                        Text("No recipes available")
+                            .foregroundColor(.gray)
+                            .multilineTextAlignment(.center)
+                            .padding()
+                    } else {
+                        List(recipes, id: \.uuid) { recipe in
+                            RecipeDetailView(recipe: recipe, viewModel: viewModel)
+                        }
                     }
+                
+                case .error(let message):
+                    Text("Error: \(message)")
+                        .foregroundColor(.red)
+                        .multilineTextAlignment(.center)
+                        .padding()
                 }
             }
             .navigationTitle("Recipes")
             .task {
-                if viewModel.recipes.isEmpty {
-                    await viewModel.loadRecipes()
-                }
+                await viewModel.loadRecipes() // Load recipes when the view appears
             }
             .refreshable {
-                await viewModel.loadRecipes()
+                await viewModel.loadRecipes() // Refresh recipes on pull down
             }
         }
     }
 }
-
